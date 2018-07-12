@@ -91,3 +91,58 @@
 
 
 8. [Dockerizing an app](README-08-containerizing-an-app.md)
+
+9. Docker Compose
+
+Docker-compose is a python application installed on top of the docker engine
+
+A tool called Fig by Orchard. Awesome tool. Used fig command to start, stop and rebuild services,
+and view the status of running services. Acquired by docker in 2014 and renamed as docker-compose
+
+Uses a dockerfile
+
+Dockerfile - how to build the image
+
+
+Docker-compose.yml compose file to describe how Docker should deploy the app
+	compose files can be yaml or JSON
+
+Compose will deploy a container for each service
+
+docker-compose.yml contains keys:
+
+Start with version
+
+Top level keys: 
+   version - mandatory and always first line. Defines the version of the compose file format (API)
+   services - where you define services to use (i.e. a front end service and a db service). Compose will deploy each in its own container
+   networks - Tells compose to create new networks. By default, creates bridge networks that are single host (onlny connect to containers on same host) but can define them specifically using the driver property
+   volumes - where you store and persist data
+
+Docker-compose commands
+-build - build a new image from the docker file
+-command - used to run an app as the main app in the container (must exist in the image)
+-ports - tells doctor to map port inside the container
+-networks - tells which network to attach the derive's container to (should already exist or be defined in the file)
+-volumes - tells docker to mount the counter-vol volume to /code(:target).
+
+
+Book calls a multi container app a Compose app
+
+-d runs in the background
+
+docker-compose up & - to bring the terminal back up
+
+
+Docker ps to show current state of the docker-compose app.
+Docker-compose top to list the processes running inside each container
+Docker-compose stop does not remove the application but just stops it
+Delete a stopped container with docker-compose rm
+Restart with docker-compose restart
+
+Docker-compose down
+-volumes aren't deleted - that info is meant to persist
+-both stops and deletes it
+-only the images, volumes and source code remain
+
+
